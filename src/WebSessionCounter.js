@@ -1,5 +1,6 @@
 
 import querystring from 'querystring';
+import moment from 'moment';
 
 function isLocalStorageSupported() {
     let testKey = 'test', storage = window.localStorage;
