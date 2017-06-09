@@ -1,6 +1,5 @@
 
 import querystring from 'querystring';
-import moment from 'moment';
 
 function isLocalStorageSupported() {
     let testKey = 'test', storage = window.localStorage;
@@ -37,9 +36,9 @@ class WebSessionCounter {
         const time = window.localStorage.getItem('user_web_session_last_active');
 
         if (time) {
-            return moment(time);
+            return new Date(time);
         }else{
-            return moment();
+            return new Date();
         }
     }
 
@@ -69,7 +68,7 @@ class WebSessionCounter {
 
             if (count === 0 || this.isNewSession()) {
                 this.count = count + 1;
-                this.lastActive = moment();
+                this.lastActive = new Date();
                 this.lastUtmCampaign = this.currentUtmCampaign;
             }
         }
@@ -79,11 +78,11 @@ class WebSessionCounter {
         // use definition from https://support.google.com/analytics/answer/2731565?hl=en
 
         const time = this.lastActive,
-              now = moment();
+              now = new Date();
 
         return [
-            moment.duration(now.diff(time)).asMinutes() > 30,
-            now.format('YYYY-MM-DD') !== time.format('YYYY-MM-DD'),
+            (now - time)/1000/60 > 30,
+            now.toDateString() !== time.toDateString(),
             this.lastUtmCampaign !== this.currentUtmCampaign
         ].some(b => b);
     }
