@@ -1,6 +1,6 @@
 {
   "name": "web-session-counter",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Utility to count a user's web sessions based on the definition GA uses. Edit",
   "main": "lib/index.js",
   "scripts": {
