@@ -68,9 +68,10 @@ class WebSessionCounter {
 
             if (count === 0 || this.isNewSession()) {
                 this.count = count + 1;
-                this.lastActive = new Date();
                 this.lastUtmCampaign = this.currentUtmCampaign;
             }
+
+            this.lastActive = new Date();
         }
     }
 
